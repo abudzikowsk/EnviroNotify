@@ -1,12 +1,9 @@
-using EnviroNotify.Database;
-using EnviroNotify.Database.Entities;
-using EnviroNotify.Repositories;
-using Microsoft.EntityFrameworkCore;
+using EnviroNotify.Database.Repositories;
+using EnviroNotify.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<DatabaseSettingsOptions>(builder.Configuration.GetSection("Database"));
 builder.Services.AddScoped<PersistedClientRepository>();
 var app = builder.Build();
 

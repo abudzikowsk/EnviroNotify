@@ -1,4 +1,4 @@
-using EnviroNotify.Repositories;
+using EnviroNotify.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebPush;
 

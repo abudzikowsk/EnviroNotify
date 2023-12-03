@@ -1,10 +1,13 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace EnviroNotify.Database.Entities;
 
 public class PersistedClient
 {
-    public int Id { get; set; }
-    public string ClientId { get; set; }
-    
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
     public string Endpoint { get; set; }
 
     public string P256DH { get; set; }

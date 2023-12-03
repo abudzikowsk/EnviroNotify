@@ -1,4 +1,4 @@
-using EnviroNotify.Repositories;
+using EnviroNotify.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnviroNotify.Controllers;
@@ -13,14 +13,9 @@ public class HomeController(IConfiguration configuration, PersistedClientReposit
     }
 
     [HttpPost]
-    public async Task<ActionResult> Index(string clientId, string endpoint, string p256dh, string auth)
+    public async Task<ActionResult> Index(string endpoint, string p256dh, string auth)
     {
-        if (await persistedClientRepository.ClientExists(clientId))
-        {
-            return BadRequest("Client already exists.");
-        }
-
-        await persistedClientRepository.AddClient(clientId, endpoint, p256dh, auth);
+        await persistedClientRepository.AddClient(endpoint, p256dh, auth);
 
         return View();
     }
