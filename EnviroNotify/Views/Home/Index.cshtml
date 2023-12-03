@@ -1,0 +1,87 @@
+<h1>Welcome to EnviroNotify!</h1>
+<p>Monitor and stay informed about the conditions in your room. EnviroNotify allows you to read and receive updates on humidity and temperature levels.</p>
+<div id="GiveAccess" style="display:none;">
+    Give access to making notifications:
+    <button id="PromptForAccessBtn">Prompt</button>
+</div>
+<div id="NoSupport" style="display:none;">
+    Your browser does not support push notifications or you have blocked notifications.
+</div>
+<form method="post" asp-action="Index" id="form" style="display:none;">
+    <input id="endpoint" name="endpoint" hidden />
+    <input id="p256dh" name="p256dh" hidden />
+    <input id="auth" name="auth" hidden />
+    <input id="clientId" name="clientId" hidden value="@Guid.NewGuid()"/>
+
+    <button type="submit">Subscribe</button>
+</form>
+
+@section Scripts {
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register("/ServiceWorker.js")
+                    .then(function(reg) {
+                        if (Notification.permission === "granted") {
+                            document.getElementById("form").style.display = "block";
+                            getSubscription(reg);
+                        } else if (Notification.permission === "blocked") {
+                            document.getElementById("NoSupport").style.display = "block";
+                        } else {
+                            document.getElementById("GiveAccess").style.display = "block";
+                            document.getElementById("PromptForAccessBtn").addEventListener("click", function() {
+                                requestNotificationAccess(reg);
+                            });
+                        }
+                    });
+            });
+        } else {
+            document.getElementById("NoSupport").style.display = "block";
+        }
+
+        function requestNotificationAccess(reg) {
+            Notification.requestPermission(function (status) {
+                document.getElementById("GiveAccess").style.display = "none";
+                if (status == "granted") {
+                    document.getElementById("form").style.display = "block";
+                    getSubscription(reg);
+                } else {
+                    document.getElementById("NoSupport").style.display = "block";
+                }
+            });
+        }
+
+        function getSubscription(reg) {
+            reg.pushManager.getSubscription().then(function (sub) {
+                if (sub === null) {
+                    reg.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: "@ViewBag.ApplicationServerKey"
+                    }).then(function (sub) {
+                        fillSubscribeFields(sub);
+                    }).catch(function (e) {
+                        console.error("Unable to subscribe to push", e);
+                    });
+                } else {
+                    fillSubscribeFields(sub);
+                }
+            });
+        }
+
+        function fillSubscribeFields(sub) {
+            document.getElementById("endpoint").value = sub.endpoint;
+            document.getElementById("p256dh").value = arrayBufferToBase64(sub.getKey("p256dh"));
+            document.getElementById("auth").value = arrayBufferToBase64(sub.getKey("auth"));
+        }
+
+        function arrayBufferToBase64(buffer) {
+            let binary = '';
+            let bytes = new Uint8Array(buffer);
+            let len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+    </script>
+}
