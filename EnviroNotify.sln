@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnviroNotify", "EnviroNotify\EnviroNotify.csproj", "{5916647A-6332-4BBB-BDA3-77A5AFC8741E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnviroNotify.Dashboard", "EnviroNotify.Dashboard\EnviroNotify.Dashboard.csproj", "{5916647A-6332-4BBB-BDA3-77A5AFC8741E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arduino", "Arduino", "{A116D0F4-C5D8-49D4-8E49-52AFA7B2E964}"
 	ProjectSection(SolutionItems) = preProject

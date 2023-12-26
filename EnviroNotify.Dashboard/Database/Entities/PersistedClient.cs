@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace EnviroNotify.Database.Entities;
+namespace EnviroNotify.Dashboard.Database.Entities;
 
 public class PersistedClient
 {

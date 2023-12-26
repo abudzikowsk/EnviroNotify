@@ -1,7 +1,7 @@
-using EnviroNotify.Database.Repositories;
+using EnviroNotify.Dashboard.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EnviroNotify.Controllers;
+namespace EnviroNotify.Dashboard.Controllers;
 
 public class HomeController(IConfiguration configuration, PersistedClientRepository persistedClientRepository) : Controller
 {

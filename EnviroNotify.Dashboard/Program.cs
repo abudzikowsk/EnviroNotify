@@ -1,5 +1,5 @@
-using EnviroNotify.Database.Repositories;
-using EnviroNotify.Options;
+using EnviroNotify.Dashboard.Database.Repositories;
+using EnviroNotify.Dashboard.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();

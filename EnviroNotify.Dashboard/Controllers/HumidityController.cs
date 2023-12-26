@@ -1,8 +1,8 @@
-using EnviroNotify.Database.Repositories;
+using EnviroNotify.Dashboard.Database.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using WebPush;
 
-namespace EnviroNotify.Controllers;
+namespace EnviroNotify.Dashboard.Controllers;
 
 [ApiController]
 [Route("[controller]")]

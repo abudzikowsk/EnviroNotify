@@ -1,10 +1,9 @@
-using EnviroNotify.Database.Entities;
-using EnviroNotify.Options;
-using Microsoft.CodeAnalysis.Options;
+using EnviroNotify.Dashboard.Database.Entities;
+using EnviroNotify.Dashboard.Options;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace EnviroNotify.Database.Repositories;
+namespace EnviroNotify.Dashboard.Database.Repositories;
 
 public class PersistedClientRepository
 {

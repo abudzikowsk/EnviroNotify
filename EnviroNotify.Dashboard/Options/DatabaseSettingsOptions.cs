@@ -1,4 +1,4 @@
-namespace EnviroNotify.Options;
+namespace EnviroNotify.Dashboard.Options;
 
 public class DatabaseSettingsOptions
 {
