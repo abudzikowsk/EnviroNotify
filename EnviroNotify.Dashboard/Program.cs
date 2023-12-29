@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<DatabaseSettingsOptions>(builder.Configuration.GetSection("Database"));
 builder.Services.AddScoped<PersistedClientRepository>();
+builder.Services.AddScoped<EnvironmentDataRepository>();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
