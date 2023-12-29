@@ -17,9 +17,14 @@ public class EnvironmentDataRepository
         environmentDataCollection = mongoDatabase.GetCollection<EnvironmentData>(CollectionName);
     }
     
-    public async Task<List<EnvironmentData>> GetDataByIdAsync(int id)
+    public async Task<List<EnvironmentData>> GetDataByIdAsync(string id)
     {
         return await environmentDataCollection.Find(x => x.Id == id).ToListAsync();
+    }
+    
+    public async Task<List<EnvironmentData>> GetAllDataAsync()
+    {
+        return await environmentDataCollection.Find(x => true).ToListAsync();
     }
     
     public async Task AddData(double humidity, double temperature, DateTime dateTime)
@@ -34,7 +39,7 @@ public class EnvironmentDataRepository
         await environmentDataCollection.InsertOneAsync(environmentData);
     }
     
-    public async Task DeleteDataAsync(int id)
+    public async Task DeleteDataAsync(string id)
     {
         var dataToDelete = await environmentDataCollection
             .FindAsync(r => r.Id == id);

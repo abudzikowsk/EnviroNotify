@@ -4,14 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EnviroNotify.Dashboard - Stay Informed About Your Environment</title>
+    <title>EnviroNotify - Stay Informed About Your Environment</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/24.1.41/material.css" />
+    <script src="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2.min.js"></script>
 </head>
 
 <body>
     @RenderBody()
-<script src="scripts.js"></script>
-@await RenderSectionAsync("Scripts", required: false)
+    <script src="scripts.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <ejs-scripts></ejs-scripts>
 </body>
 
 </html>

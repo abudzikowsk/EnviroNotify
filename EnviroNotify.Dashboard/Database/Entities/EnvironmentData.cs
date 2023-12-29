@@ -7,7 +7,7 @@ public class EnvironmentData
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]   
-    public int Id { get; set; }
+    public string Id { get; set; }
     public double Humidity { get; set; }
     public double Temperature { get; set; }
     public DateTime DateTime { get; set; }
