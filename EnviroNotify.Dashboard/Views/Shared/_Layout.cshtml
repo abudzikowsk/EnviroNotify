@@ -11,10 +11,14 @@
 </head>
 
 <body>
-    @RenderBody()
-    <script src="scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    <ejs-scripts></ejs-scripts>
+<nav>
+    <a asp-action="Index" asp-controller="Home">Charts</a>
+    <a asp-action="Subscribe" asp-controller="Home">Subscribe notifications</a>
+</nav>
+@RenderBody()
+<script src="scripts.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+<ejs-scripts></ejs-scripts>
 </body>
 
 </html>
