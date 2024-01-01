@@ -1,0 +1,9 @@
+.chart-box {
+    width: 50%;
+}
+
+.chart-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

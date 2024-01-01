@@ -3,25 +3,67 @@
 @{
     Layout = "_Layout";
 }
+<div class="chart-container">
+  <div class="chart-box">
+    <canvas id="humidity-chart"></canvas>
+  </div>
 
-<ejs-chart id="container" title="Humidity">
-    <e-chart-primaryxaxis valueType="DateTimeCategory" intervalType="Hours"></e-chart-primaryxaxis>
-    <e-chart-tooltipsettings enable="true" header="Humidity" format="<b>${point.x} : ${point.y}%</b>"></e-chart-tooltipsettings>
-    <e-series-collection>
-        <e-series dataSource="@Model" name="Humidity" xName="DateTime" width="2" opacity="1" yName="Humidity" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Line">
-            <e-series-marker visible="true" shape="Circle"></e-series-marker>
-        </e-series>
-    </e-series-collection>
-</ejs-chart>
+  <div class="chart-box">
+    <canvas id="temperature-chart"></canvas>
+  </div>
+</div>
 
-<ejs-chart id="container2" title="Temperature">
-    <e-chart-primaryxaxis valueType="DateTimeCategory" intervalType="Hours"></e-chart-primaryxaxis>
-    <e-chart-primaryyaxis valueType="Double" labelFormat="0.0"></e-chart-primaryyaxis>
-    <e-chart-tooltipsettings enable="true" header="Temperature" format="<b>${point.x} : ${point.y}C</b>"></e-chart-tooltipsettings>
-    <e-series-collection>
-        <e-series dataSource="@Model" name="Temperature" xName="DateTime" width="2" opacity="1" yName="Temperature" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Line">
-            <e-series-marker visible="true" shape="Circle"></e-series-marker>
-        </e-series>
-    </e-series-collection>
-</ejs-chart>
-
+@section Scripts
+{
+    <script>
+      const humidityCtx = document.getElementById('humidity-chart');
+      const humidityLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime.ToString("g")).ToList()));
+      const humidityData = {
+        labels: humidityLabels,
+        datasets: [{
+          label: 'Humidity',
+          data: @Html.Raw(Json.Serialize(Model.Select(x => x.Humidity).ToList())),
+          backgroundColor: 'rgb(99,151,255)',
+          borderColor: 'rgb(99,151,255)',
+          borderWidth: 1
+        }]
+      };
+    
+      new Chart(humidityCtx, {
+        type: 'line',
+        data: humidityData,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+      
+            const temperatureCtx = document.getElementById('temperature-chart');
+            const temperatureLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime.ToString("g")).ToList()));
+            const temperatureData = {
+              labels: temperatureLabels,
+              datasets: [{
+                label: 'Temperature',
+                data: @Html.Raw(Json.Serialize(Model.Select(x => x.Temperature).ToList())),
+                backgroundColor: 'rgb(8,154,45)',
+                borderColor: 'rgb(8,154,45)',
+                borderWidth: 1
+              }]
+            };
+          
+            new Chart(temperatureCtx, {
+              type: 'line',
+              data: temperatureData,
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+    </script>
+}
