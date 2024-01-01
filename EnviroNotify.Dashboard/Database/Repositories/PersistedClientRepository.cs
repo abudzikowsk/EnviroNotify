@@ -1,11 +1,12 @@
 using EnviroNotify.Dashboard.Database.Entities;
+using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using EnviroNotify.Dashboard.Options;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace EnviroNotify.Dashboard.Database.Repositories;
 
-public class PersistedClientRepository
+public class PersistedClientRepository : IPersistedClientRepository
 {
     private const string CollectionName = "PersistedClients";
     private readonly IMongoCollection<PersistedClient> persistedClientsCollection;

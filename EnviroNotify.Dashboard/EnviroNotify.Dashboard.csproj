@@ -28,5 +28,5 @@
       <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="24.1.43" />
       <PackageReference Include="WebPush" Version="1.0.12" />
     </ItemGroup>
-
+    
 </Project>

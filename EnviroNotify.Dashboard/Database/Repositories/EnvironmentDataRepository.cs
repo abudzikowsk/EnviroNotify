@@ -1,11 +1,12 @@
 using EnviroNotify.Dashboard.Database.Entities;
+using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using EnviroNotify.Dashboard.Options;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace EnviroNotify.Dashboard.Database.Repositories;
 
-public class EnvironmentDataRepository
+public class EnvironmentDataRepository : IEnvironmentDataRepository
 {
     private const string CollectionName = "EnvironmentData";
     private readonly IMongoCollection<EnvironmentData> environmentDataCollection;
@@ -50,5 +51,13 @@ public class EnvironmentDataRepository
         }
         
         environmentDataCollection.DeleteOne(r => r.Id == id);
+    }
+
+    public async Task<(DateTime MinTime, DateTime MaxTime)> GetMinMaxTimeAsync()
+    {
+        var minTime = await environmentDataCollection.Find(x => true).SortBy(x => x.DateTime).Limit(1).FirstOrDefaultAsync();
+        var maxTime = await environmentDataCollection.Find(x => true).SortByDescending(x => x.DateTime).Limit(1).FirstOrDefaultAsync();
+        
+        return (minTime.DateTime, maxTime.DateTime);
     }
 }
