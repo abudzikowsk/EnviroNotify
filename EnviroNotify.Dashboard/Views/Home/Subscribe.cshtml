@@ -1,20 +1,21 @@
-<h1>Welcome to EnviroNotify!</h1>
-<p>Monitor and stay informed about the conditions in your room. EnviroNotify allows you to read and receive updates on humidity and temperature levels.</p>
-<div id="GiveAccess" style="display:none;">
-    Give access to making notifications:
-    <button id="PromptForAccessBtn">Prompt</button>
-</div>
-<div id="NoSupport" style="display:none;">
-    Your browser does not support push notifications or you have blocked notifications.
-</div>
-<form method="post" asp-action="Index" id="form" style="display:none;">
-    <input id="endpoint" name="endpoint" hidden />
-    <input id="p256dh" name="p256dh" hidden />
-    <input id="auth" name="auth" hidden />
+<div class="container">
+    <h1 class="display-2">Welcome to EnviroNotify!</h1>
+    <p class="lead">Monitor and stay informed about the conditions in your room. EnviroNotify allows you to read and receive updates on humidity and temperature levels.</p>
+    <div id="GiveAccess" style="display:none;">
+        Give access to making notifications:
+        <button id="PromptForAccessBtn">Prompt</button>
+    </div>
+    <div id="NoSupport" style="display:none;">
+        Your browser does not support push notifications or you have blocked notifications.
+    </div>
+    <form method="post" asp-action="Index" id="form" style="display:none;">
+        <input id="endpoint" name="endpoint" hidden />
+        <input id="p256dh" name="p256dh" hidden />
+        <input id="auth" name="auth" hidden />
 
-    <button type="submit">Subscribe</button>
-</form>
-
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+</div>
 @section Scripts {
     <script>
         if ('serviceWorker' in navigator) {
