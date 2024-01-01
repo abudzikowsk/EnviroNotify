@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<DatabaseSettingsOptions>(builder.Configuration.GetSection("Database"));
 builder.Services.AddScoped<IPersistedClientRepository, PersistedClientRepository>();
 builder.Services.AddScoped<IEnvironmentDataRepository, EnvironmentDataRepository>();
+builder.Services.Configure<VapidOptions>(builder.Configuration.GetSection("VAPID"));
 var app = builder.Build();
 
 app.UseHttpsRedirection();

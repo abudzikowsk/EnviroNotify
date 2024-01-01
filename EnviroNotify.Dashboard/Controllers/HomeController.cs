@@ -1,16 +1,21 @@
 using EnviroNotify.Dashboard.Database.Repositories;
 using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using EnviroNotify.Dashboard.Models;
+using EnviroNotify.Dashboard.Options;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace EnviroNotify.Dashboard.Controllers;
 
-public class HomeController(IConfiguration configuration, IPersistedClientRepository persistedClientRepository, IEnvironmentDataRepository environmentDataRepository) : Controller
+public class HomeController(
+    IPersistedClientRepository persistedClientRepository, 
+    IEnvironmentDataRepository environmentDataRepository, 
+    IOptions<VapidOptions> vapidOptions) : Controller
 {
     [HttpGet]
     public ActionResult Subscribe()
     {
-        ViewBag.ApplicationServerKey = configuration["VAPID:PublicKey"];
+        ViewBag.ApplicationServerKey = vapidOptions.Value.PublicKey;
         return View();
     }
 
