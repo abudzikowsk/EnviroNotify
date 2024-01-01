@@ -1,4 +1,5 @@
 using EnviroNotify.Dashboard.Database.Repositories;
+using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using WebPush;
 
@@ -6,7 +7,7 @@ namespace EnviroNotify.Dashboard.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class HumidityController(PersistedClientRepository persistedClientRepository, IConfiguration configuration) : ControllerBase
+public class HumidityController(IPersistedClientRepository persistedClientRepository, IConfiguration configuration) : ControllerBase
 {
     [Route("[action]")]
     public async Task<IActionResult> TestNotify()

@@ -1,10 +1,11 @@
 using EnviroNotify.Dashboard.Database.Repositories;
+using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using EnviroNotify.Dashboard.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EnviroNotify.Dashboard.Controllers;
 
-public class HomeController(IConfiguration configuration, PersistedClientRepository persistedClientRepository, EnvironmentDataRepository environmentDataRepository) : Controller
+public class HomeController(IConfiguration configuration, IPersistedClientRepository persistedClientRepository, IEnvironmentDataRepository environmentDataRepository) : Controller
 {
     [HttpGet]
     public ActionResult Subscribe()
