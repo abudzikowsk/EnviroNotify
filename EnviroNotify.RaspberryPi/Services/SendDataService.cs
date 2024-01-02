@@ -7,11 +7,11 @@ namespace EnviroNotify.RaspberryPi.Services;
 public class SendDataService
 {
     private const string Url = "http://192.168.53:8383/Humidity/AcceptDataAndNotify";
+    private HttpClient _httpClient = new HttpClient();
     
     public void Send(double humidity, double temperature)
     {
         Console.WriteLine("Initialization of request.");
-        using var client = new HttpClient();
         var data = new EnvironmentDataModel
         {
             Humidity = humidity,
@@ -27,8 +27,7 @@ public class SendDataService
         };
         
         Console.WriteLine("Initialization of request finished.");
-        
-        client.Send(httpRequest);
+        Task.Run(() => _httpClient.SendAsync(httpRequest));
         Console.WriteLine("Data has been sent.");
     }
 }
