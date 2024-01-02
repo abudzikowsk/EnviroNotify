@@ -19,5 +19,6 @@ public class SendDataService
 
         var json = JsonSerializer.Serialize(data);
         await client.PostAsync(Url, new StringContent(json, Encoding.UTF8, "application/json"));
+        Console.WriteLine("Data has been sent.");
     }
 }
