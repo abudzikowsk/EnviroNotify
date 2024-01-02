@@ -10,6 +10,7 @@ public class SendDataService
     
     public void Send(double humidity, double temperature)
     {
+        Console.WriteLine("Initialization of request.");
         using var client = new HttpClient();
         var data = new EnvironmentDataModel
         {
@@ -24,6 +25,8 @@ public class SendDataService
             Method = HttpMethod.Post,
             RequestUri = new Uri(Url)
         };
+        
+        Console.WriteLine("Initialization of request finished.");
         
         client.Send(httpRequest);
         Console.WriteLine("Data has been sent.");
