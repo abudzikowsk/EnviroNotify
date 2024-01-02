@@ -10,7 +10,7 @@ public interface IEnvironmentDataRepository
 
     Task AddData(double humidity, double temperature, DateTime dateTime);
 
-    Task DeleteDataAsync(string id);
+    Task DeleteOldDataAsync();
     
     Task<(DateTime MinTime, DateTime MaxTime)> GetMinMaxTimeAsync();
 }

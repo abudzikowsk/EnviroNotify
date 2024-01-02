@@ -1,34 +1,25 @@
 using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
-using EnviroNotify.Dashboard.Options;
+using EnviroNotify.Dashboard.Services.Interfaces;
+using EnviroNotify.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using WebPush;
 
 namespace EnviroNotify.Dashboard.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class HumidityController(
-    IPersistedClientRepository persistedClientRepository, 
-    IOptions<VapidOptions> vapidOptions) : ControllerBase
+    IWebNotificationService webNotificationService, 
+    IEnvironmentDataRepository environmentDataRepository) : ControllerBase
 {
     [Route("[action]")]
-    public async Task<IActionResult> TestNotify()
+    [HttpPost]
+    public async Task<IActionResult> AcceptDataAndNotify(EnvironmentDataModel environmentDataModel)
     {
-        var subject = vapidOptions.Value.Subject;
-        var publicKey = vapidOptions.Value.PublicKey;
-        var privateKey = vapidOptions.Value.PrivateKey;
-
-        var vapidDetails = new VapidDetails(subject, publicKey, privateKey);
-        var webPushClient = new WebPushClient();
-
-        var clients = await persistedClientRepository.GetAllClients();
-        foreach (var client in clients)
+        await environmentDataRepository.AddData(environmentDataModel.Humidity, environmentDataModel.Temperature, DateTime.Now);
+        if (environmentDataModel.Humidity >= 70)
         {
-            var subscription = new PushSubscription(client.Endpoint, client.P256DH, client.Auth);
-            await webPushClient.SendNotificationAsync(subscription, "test", vapidDetails);
+            await webNotificationService.SendNotificationAsync();
         }
-
         return Ok();
     }
 }

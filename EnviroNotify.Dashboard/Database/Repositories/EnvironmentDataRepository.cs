@@ -40,17 +40,9 @@ public class EnvironmentDataRepository : IEnvironmentDataRepository
         await environmentDataCollection.InsertOneAsync(environmentData);
     }
     
-    public async Task DeleteDataAsync(string id)
+    public async Task DeleteOldDataAsync()
     {
-        var dataToDelete = await environmentDataCollection
-            .FindAsync(r => r.Id == id);
-
-        if (dataToDelete == null)
-        {
-            return;
-        }
-        
-        environmentDataCollection.DeleteOne(r => r.Id == id);
+        await environmentDataCollection.DeleteManyAsync(x => x.DateTime > DateTime.Now.AddDays(-7));
     }
 
     public async Task<(DateTime MinTime, DateTime MaxTime)> GetMinMaxTimeAsync()

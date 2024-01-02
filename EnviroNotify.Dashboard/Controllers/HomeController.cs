@@ -1,4 +1,3 @@
-using EnviroNotify.Dashboard.Database.Repositories;
 using EnviroNotify.Dashboard.Database.Repositories.Interfaces;
 using EnviroNotify.Dashboard.Models;
 using EnviroNotify.Dashboard.Options;
@@ -18,13 +17,13 @@ public class HomeController(
         ViewBag.ApplicationServerKey = vapidOptions.Value.PublicKey;
         return View();
     }
-
+    
     [HttpPost]
     public async Task<ActionResult> Subscribe(string endpoint, string p256dh, string auth)
     {
         await persistedClientRepository.AddClient(endpoint, p256dh, auth);
 
-        return View();
+        return RedirectToAction("Index", "Home");
     }
     
     [HttpGet]

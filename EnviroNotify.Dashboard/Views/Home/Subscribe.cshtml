@@ -2,13 +2,14 @@
     <h1 class="display-2">Welcome to EnviroNotify!</h1>
     <p class="lead">Monitor and stay informed about the conditions in your room. EnviroNotify allows you to read and receive updates on humidity and temperature levels.</p>
     <div id="GiveAccess" style="display:none;">
-        Give access to making notifications:
-        <button id="PromptForAccessBtn">Prompt</button>
+        Give access to making notifications: 
+        <br/>
+        <button id="PromptForAccessBtn" class="btn btn-primary">Prompt</button>
     </div>
     <div id="NoSupport" style="display:none;">
         Your browser does not support push notifications or you have blocked notifications.
     </div>
-    <form method="post" asp-action="Index" id="form" style="display:none;">
+    <form method="post" asp-action="Subscribe" id="form" style="display:none;">
         <input id="endpoint" name="endpoint" hidden />
         <input id="p256dh" name="p256dh" hidden />
         <input id="auth" name="auth" hidden />
