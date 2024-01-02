@@ -15,7 +15,7 @@ while (true)
     {
         Console.WriteLine($"Temperature: {temperature.DegreesCelsius:0.#}\u00B0C");
         Console.WriteLine($"Relative humidity: {humidity.Percent:0.#}%");
-        await sendDataService.Send(humidity.Percent, temperature.DegreesCelsius);
+        sendDataService.Send(humidity.Percent, temperature.DegreesCelsius);
     }
     
     sensor.Sleep();
