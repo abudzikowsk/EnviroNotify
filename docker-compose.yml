@@ -1,0 +1,21 @@
+﻿version: '3.4'
+
+services:
+    mongo:
+        image: mongo
+        restart: always
+        ports:
+        - "27017:27017"
+        volumes:
+        - ./data:/data/db
+    environotify.dashboard:
+      image: environotify.dashboard
+      build:
+        context: .
+        dockerfile: EnviroNotify.Dashboard/Dockerfile
+      ports:
+          - "8080:8080"
+      depends_on:
+          - mongo
+      links:
+        - mongo

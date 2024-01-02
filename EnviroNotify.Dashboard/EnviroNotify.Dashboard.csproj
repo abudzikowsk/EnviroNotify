@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyName>EnviroNotify.Dashboard</AssemblyName>
         <RootNamespace>EnviroNotify.Dashboard</RootNamespace>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,6 +35,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EnviroNotify.Shared\EnviroNotify.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
     
 </Project>
