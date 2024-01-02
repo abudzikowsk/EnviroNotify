@@ -27,7 +27,8 @@ public class SendDataService
         };
         
         Console.WriteLine("Initialization of request finished.");
-        Task.Run(() => _httpClient.SendAsync(httpRequest));
+        var response = Task.Run(() => _httpClient.SendAsync(httpRequest)).Result;
+        Console.WriteLine($"Response Status: {response.StatusCode}");
         Console.WriteLine("Data has been sent.");
     }
 }
