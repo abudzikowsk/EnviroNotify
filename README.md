@@ -13,8 +13,8 @@ The SHTC3 sensor, renowned for its accuracy and reliability, is employed to meas
 ### Real-time Notifications
 EnviroNotify goes beyond mere data collection. The project includes a Progressive Web Application (PWA) that notifies users instantly when there are significant changes in the environment being monitored. Whether it's a sudden temperature spike or a drop in humidity, users stay informed in real-time.
 
-### Data Management & Hagfire
-The project incorporates a job-based mechanism for deleting data older than 7 days. This ensures that the system maintains optimal performance and storage efficiency over time.
+### Data Management with Hagfire
+EnviroNotify incorporates the Hagfire library for efficient data management, including a job-based mechanism for deleting data older than 7 days. This ensures that the system maintains optimal performance and storage efficiency over time.
 
 ### User-friendly Interface
 The PWA offers an intuitive and user-friendly interface for easy interaction. Users can customize notification settings, view historical data trends, and receive insights into the overall environmental conditions.
