@@ -18,9 +18,15 @@ public class SendDataService
         };
         var json = JsonSerializer.Serialize(data);
 
-        var response = await _httpClient.PostAsync(Url, new StringContent(json, Encoding.UTF8, "application/json"));
-
-        Console.WriteLine($"Response Status: {response.StatusCode}");
-        Console.WriteLine("Data has been sent.");
+        try
+        {
+            var response = await _httpClient.PostAsync(Url, new StringContent(json, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"Response Status: {response.StatusCode}");
+            Console.WriteLine("Data has been sent.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error while sending data.");
+        }
     }
 }
