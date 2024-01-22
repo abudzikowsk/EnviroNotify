@@ -37,7 +37,7 @@ public class HomeController(
             {
                 Humidity = data.Humidity,
                 Temperature = data.Temperature,
-                DateTime = data.DateTime
+                DateTime = data.DateTime.ToString("dd/MM HH:mm")
             });
         }
         return View(viewModel);

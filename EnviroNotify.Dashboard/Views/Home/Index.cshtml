@@ -17,7 +17,7 @@
 {
     <script>
       const humidityCtx = document.getElementById('humidity-chart');
-      const humidityLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime.ToString("g")).ToList()));
+      const humidityLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime).ToList()));
       const humidityData = {
         labels: humidityLabels,
         datasets: [{
@@ -42,7 +42,7 @@
       });
       
             const temperatureCtx = document.getElementById('temperature-chart');
-            const temperatureLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime.ToString("g")).ToList()));
+            const temperatureLabels = @Html.Raw(Json.Serialize(Model.Select(x => x.DateTime).ToList()));
             const temperatureData = {
               labels: temperatureLabels,
               datasets: [{
