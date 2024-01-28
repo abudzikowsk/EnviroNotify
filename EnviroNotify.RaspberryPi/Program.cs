@@ -19,7 +19,7 @@ while (true)
     }
     
     sensor.Sleep();
-    Thread.Sleep(1000 * 60 * 20);
+    Thread.Sleep(1000 * 60);
 }
 
 void Initialize()
