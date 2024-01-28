@@ -42,7 +42,7 @@ public class EnvironmentDataRepository : IEnvironmentDataRepository
     
     public async Task DeleteOldDataAsync()
     {
-        await environmentDataCollection.DeleteManyAsync(x => x.DateTime < DateTime.Now.AddDays(-7));
+        await environmentDataCollection.DeleteManyAsync(x => x.DateTime < DateTime.Now.AddDays(-1));
     }
 
     public async Task<(DateTime MinTime, DateTime MaxTime)> GetMinMaxTimeAsync()
