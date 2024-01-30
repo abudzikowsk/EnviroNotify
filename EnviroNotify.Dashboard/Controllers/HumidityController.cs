@@ -15,7 +15,10 @@ public class HumidityController(
     [HttpPost]
     public async Task<IActionResult> AcceptDataAndNotify(EnvironmentDataModel environmentDataModel)
     {
-        await environmentDataRepository.AddData(environmentDataModel.Humidity, environmentDataModel.Temperature, DateTime.Now);
+        var utcTime = DateTime.UtcNow;
+        var warsawZone = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+        var warsawTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, warsawZone);
+        await environmentDataRepository.AddData(environmentDataModel.Humidity, environmentDataModel.Temperature, warsawTime);
         if (environmentDataModel.Humidity >= 70)
         {
             await webNotificationService.SendNotificationAsync();
