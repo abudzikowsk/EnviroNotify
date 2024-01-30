@@ -3,7 +3,7 @@
 Welcome to EnviroNotify, an open-source project designed to revolutionize environmental monitoring using IoT components. With a focus on precision and real-time updates, this project utilizes Raspberry Pi Zero 2 W and SHTC3 sensor to track humidity and temperature levels in any given room or space.
 
 ## App Screenshots
-![image](https://github.com/abudzikowsk/EnviroNotify/assets/107808781/05e0bbe8-5f59-4417-92df-b06ea5efd710)
+![image](https://github.com/abudzikowsk/EnviroNotify/assets/107808781/9eb9251f-167b-4df1-afdb-61434fa732e4)
 
 ![image](https://github.com/abudzikowsk/EnviroNotify/assets/107808781/44632e8f-d4b4-4549-950d-b00317edc6f5)
 
